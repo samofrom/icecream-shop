@@ -6,7 +6,7 @@ import vitePluginSvgr from 'vite-plugin-svgr';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   return {
-    root: '',
+    base: '/icecream-shop/',
     define: {
       'process.env': env,
     },
