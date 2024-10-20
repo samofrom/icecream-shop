@@ -11,5 +11,11 @@ export namespace S {
       width: 40px;
       height: 40px;
     }
+
+    @media ${({ theme }) => theme.breakpoint['sm']} {
+      h2 {
+        display: none;
+      }
+    }
   `;
 }

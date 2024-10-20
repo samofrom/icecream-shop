@@ -17,5 +17,27 @@ export namespace S {
     &:hover {
       background-color: ${({ theme }) => theme.color['buttonContainedHover']};
     }
+
+    @media ${({ theme }) => theme.breakpoint['sm']} {
+      background-color: ${({ theme }) => theme.color['cartBackground']};
+      border-radius: 50%;
+      padding: 12px;
+
+      &:hover {
+        background-color: ${({ theme }) => theme.color['cartBackground']};
+      }
+    }
+  `;
+
+  export const Icon = styled.div`
+    @media not ${({ theme }) => theme.breakpoint['sm']} {
+      display: none;
+    }
+  `;
+
+  export const Label = styled.span`
+    @media ${({ theme }) => theme.breakpoint['sm']} {
+      display: none;
+    }
   `;
 }

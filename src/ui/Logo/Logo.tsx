@@ -10,8 +10,9 @@ type LogoProps = {
 
 const Logo: FC<LogoProps> = ({ companyName }) => {
   return (
-    <S.Logo href={'/'}>
+    <S.Logo href={'/icecream-shop/'}>
       <LogoSVG />
+
       <Typography variant={'h2'}>{companyName}</Typography>
     </S.Logo>
   );

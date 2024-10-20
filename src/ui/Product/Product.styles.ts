@@ -18,6 +18,7 @@ export namespace S {
     flex-direction: column;
 
     height: 100%;
+    max-height: 470px;
 
     padding: 20px;
     border-radius: 12px;
@@ -28,12 +29,24 @@ export namespace S {
 
     @media ${({ theme }) => theme.breakpoint['sm']} {
       flex-direction: row;
+      padding: 4px;
+
+      &:hover {
+        box-shadow: unset;
+      }
     }
   `;
 
   export const Header = styled.header`
     width: 230px;
     height: 230px;
+
+    flex-shrink: 0;
+
+    @media ${({ theme }) => theme.breakpoint['sm']} {
+      width: 120px;
+      height: 120px;
+    }
   `;
 
   export const Tags = styled.div`
@@ -41,6 +54,10 @@ export namespace S {
 
     display: flex;
     gap: 8px;
+
+    @media ${({ theme }) => theme.breakpoint['sm']} {
+      flex-direction: column;
+    }
   `;
 
   export const ImageWrapper = styled.a``;
@@ -57,7 +74,7 @@ export namespace S {
     flex: 1;
 
     @media ${({ theme }) => theme.breakpoint['sm']} {
-      flex: 0;
+      flex: 1 1 auto;
     }
   `;
 
@@ -66,11 +83,19 @@ export namespace S {
     flex-direction: column;
 
     flex: 1;
+
+    @media ${({ theme }) => theme.breakpoint['sm']} {
+      overflow: hidden;
+    }
   `;
 
   export const Title = styled.div`
     margin-bottom: 4px;
     flex: 1;
+
+    @media ${({ theme }) => theme.breakpoint['sm']} {
+      text-overflow: ellipsis;
+    }
   `;
 
   export const Description = styled.div`
@@ -80,6 +105,10 @@ export namespace S {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    @media ${({ theme }) => theme.breakpoint['sm']} {
+      display: none;
     }
   `;
 
@@ -100,5 +129,9 @@ export namespace S {
   export const Footer = styled.footer`
     margin-top: 16px;
     text-align: center;
+
+    @media ${({ theme }) => theme.breakpoint['sm']} {
+      align-self: flex-end;
+    }
   `;
 }

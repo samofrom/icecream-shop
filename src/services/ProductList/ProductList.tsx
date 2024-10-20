@@ -1,41 +1,76 @@
-import { FC, useEffect } from 'react';
-
+import { FC, useEffect, useState } from 'react';
 import { S } from './ProductList.styles.ts';
-import { useProductList } from '../../api/hooks/products/useProductList.ts';
+
 import Product from '../../ui/Product/Product.tsx';
 import Button from '../../ui/Button/Button.tsx';
 import { useLocalStorage } from '../../hooks/useLocalStorage.ts';
 import { ProductType } from '../../types/dto/products/products';
 
-const ProductList: FC = () => {
+import { useIntersection } from '../../hooks/useIntersection.ts';
+import { useProductList } from '../../api/hooks/products/useProductList.ts';
+
+type ProductListProps = {
+  search: string;
+};
+
+const limit = 10;
+
+const ProductList: FC<ProductListProps> = ({ search }) => {
+  const [products, setProducts] = useState<ProductType[]>([]);
+
   const { response, getProducts } = useProductList();
+
+  useEffect(() => {
+    (async () => {
+      const response = await getProducts({
+        search,
+        limit,
+      });
+
+      if (response) {
+        setProducts([...response.products]);
+      }
+    })();
+  }, [search]);
+
+  const onIntersection = async () => {
+    const page = response?.page;
+    if (page && page.offset + limit < page.total) {
+      const response = await getProducts({
+        search,
+        offset: page.offset + limit,
+        limit,
+      });
+
+      if (response) setProducts((prev) => [...prev, ...response.products]);
+    }
+  };
 
   const { value: productCart, setItem } = useLocalStorage<ProductType[]>(
     'productCart',
     []
   );
 
-  useEffect(() => {
-    (async () => {
-      await getProducts();
-    })();
-  }, []);
+  const { ref } = useIntersection({
+    threshold: [0],
+    onIntersection,
+  });
 
   return (
     <S.ProductList>
-      {response &&
-        response.products.map((product) => (
-          <Product
-            key={product.id}
-            {...product}
-            Button={
-              <Button
-                label={'В корзину'}
-                onClick={() => setItem([...productCart, product])}
-              />
-            }
-          />
-        ))}
+      {products.map((product, index) => (
+        <Product
+          key={product.id}
+          ref={index === products.length - 1 ? ref : null}
+          {...product}
+          Button={
+            <Button
+              label={'В корзину'}
+              onClick={() => setItem([...productCart, product])}
+            />
+          }
+        />
+      ))}
     </S.ProductList>
   );
 };

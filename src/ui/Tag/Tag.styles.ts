@@ -18,6 +18,7 @@ const mapColorToHex = (theme: CustomTheme, color: Color) => {
 export namespace S {
   export const Tag = styled.span<{ $color: Color }>`
     display: inline-flex;
+    justify-content: center;
     align-items: center;
 
     padding: 4px 16px;

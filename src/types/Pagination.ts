@@ -1,7 +1,7 @@
-export type Pagination = {
-  page: {
-    offset: number;
-    limit: number;
-    total: number;
-  };
+export type Pagination = Record<'page', PaginationProps>;
+
+export type PaginationProps = {
+  offset: number;
+  limit: number;
+  total: number;
 };

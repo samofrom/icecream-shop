@@ -14,12 +14,19 @@ export namespace S {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    gap: 16px;
     padding: 16px 32px;
 
     background-color: ${({ theme }) => theme.color['bg/white']};
     box-shadow: ${({ theme }) => theme.shadow['shadow/2']};
 
     z-index: 1000;
+
+    @media ${({ theme }) => theme.breakpoint['sm']} {
+      padding: 16px 8px;
+    }
   `;
 
   export const Content = styled.main`
@@ -27,6 +34,10 @@ export namespace S {
     justify-content: center;
     padding: 95px 32px 16px;
     flex: 1;
+
+    @media ${({ theme }) => theme.breakpoint['sm']} {
+      padding: 95px 8px 16px;
+    }
   `;
 
   export const Footer = styled.footer`

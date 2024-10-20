@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { forwardRef } from 'react';
 
 import { S } from './Product.styles.ts';
 import Typography from '../Typography/Typography.tsx';
@@ -11,20 +11,23 @@ type ProductProps = ProductType & {
   Button: JSX.Element;
 };
 
-const Product: FC<ProductProps> = ({
-  image,
-  title,
-  subtitle,
-  vendorCode,
-  costByCard,
-  cost,
-  hit,
-  isLowCalories,
-  Button,
-  ...props
-}) => {
-  return (
-    <S.Product>
+const Product = forwardRef<HTMLDivElement, ProductProps>(
+  (
+    {
+      image,
+      title,
+      subtitle,
+      vendorCode,
+      costByCard,
+      cost,
+      hit,
+      isLowCalories,
+      Button,
+      ...props
+    },
+    ref
+  ) => (
+    <S.Product ref={ref}>
       <S.ProductWrapper>
         <S.Header>
           <S.ImageWrapper href={'#'}>
@@ -81,7 +84,7 @@ const Product: FC<ProductProps> = ({
         <S.Footer>{Button}</S.Footer>
       </S.ProductWrapper>
     </S.Product>
-  );
-};
+  )
+);
 
 export default Product;

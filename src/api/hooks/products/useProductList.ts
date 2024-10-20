@@ -5,5 +5,9 @@ export function useProductList() {
   const { products } = useApi();
   const { response, makeRequest, ...other } = useRequest(products.getProducts);
 
-  return { response, getProducts: makeRequest, ...other };
+  return {
+    response,
+    getProducts: makeRequest,
+    ...other,
+  };
 }

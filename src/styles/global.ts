@@ -61,6 +61,7 @@ export const GlobalStyles = createGlobalStyle`
 
   html {
     font-size: 100%;
+    overflow: scroll;
   }
 
   html, body {
@@ -76,6 +77,7 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     min-height: 100%;
     text-rendering: optimizeSpeed;
+  
   }
   
   #root {

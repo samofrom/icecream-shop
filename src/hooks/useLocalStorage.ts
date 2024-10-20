@@ -22,7 +22,8 @@ export function useLocalStorage<T>(key: Key, initialValue: T) {
   const setItem = (value: T) => {
     localStorage.setItem(key, JSON.stringify(value));
     setState(value);
-    dispatchEvent(new Event('storage', {}));
+
+    dispatchEvent(new Event('storage'));
   };
 
   return {
