@@ -444,4 +444,8 @@ Error generating stack: `+i.message+`
     height: 20px;
     border-radius: 16px;
     background-color: ${({theme:t})=>t.color["bg/mud"]};
+
+    @media ${({theme:t})=>t.breakpoint.sm} {
+      width: 150px;
+    }
   `})(Ys||(Ys={}));const Ry=({value:e,onChange:t,placeholder:n})=>O.jsx(Ys.Input,{value:e,onChange:r=>t(r.target.value),placeholder:n}),Oy=()=>{const[e,t]=A.useState("");return O.jsx(R1,{Header:O.jsxs(O.Fragment,{children:[O.jsx(j1,{companyName:"IcecreamShop"}),O.jsx(Ry,{value:e,onChange:t,placeholder:"Поиск"}),O.jsx(ky,{})]}),Content:O.jsx(Cy,{search:e}),Footer:O.jsx(_y,{})})};Yd(document.getElementById("root")).render(O.jsxs(E1,{theme:_1,children:[O.jsx(k1,{}),O.jsx(Oy,{})]}));

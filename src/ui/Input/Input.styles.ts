@@ -12,5 +12,9 @@ export namespace S {
     height: 20px;
     border-radius: 16px;
     background-color: ${({ theme }) => theme.color['bg/mud']};
+
+    @media ${({ theme }) => theme.breakpoint['sm']} {
+      width: 150px;
+    }
   `;
 }
