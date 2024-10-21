@@ -19,7 +19,7 @@ const limit = 10;
 const ProductList: FC<ProductListProps> = ({ search }) => {
   const [products, setProducts] = useState<ProductType[]>([]);
 
-  const { response, getProducts, isLoading } = useProductList();
+  const { response, getProducts, isLoading, status } = useProductList();
 
   useEffect(() => {
     (async () => {
@@ -73,7 +73,8 @@ const ProductList: FC<ProductListProps> = ({ search }) => {
               }
             />
           ))
-        : !isLoading && (
+        : !isLoading &&
+          status === 'success' && (
             <Typography variant={'h1'}>Ничего не найдено</Typography>
           )}
     </S.ProductList>
