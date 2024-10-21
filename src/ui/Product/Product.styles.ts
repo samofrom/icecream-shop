@@ -6,6 +6,8 @@ export namespace S {
 
     border-bottom: ${({ theme }) => theme.stroke['stroke/1']};
 
+    max-height: 470px;
+
     @media ${({ theme }) => theme.breakpoint['sm']} {
       width: 100%;
     }
@@ -18,7 +20,6 @@ export namespace S {
     flex-direction: column;
 
     height: 100%;
-    max-height: 470px;
 
     padding: 20px;
     border-radius: 12px;

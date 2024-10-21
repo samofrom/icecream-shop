@@ -8,6 +8,7 @@ import { ProductType } from '../../types/dto/products/products';
 
 import { useIntersection } from '../../hooks/useIntersection.ts';
 import { useProductList } from '../../api/hooks/products/useProductList.ts';
+import Typography from '../../ui/Typography/Typography.tsx';
 
 type ProductListProps = {
   search: string;
@@ -18,7 +19,7 @@ const limit = 10;
 const ProductList: FC<ProductListProps> = ({ search }) => {
   const [products, setProducts] = useState<ProductType[]>([]);
 
-  const { response, getProducts } = useProductList();
+  const { response, getProducts, isLoading } = useProductList();
 
   useEffect(() => {
     (async () => {
@@ -58,19 +59,23 @@ const ProductList: FC<ProductListProps> = ({ search }) => {
 
   return (
     <S.ProductList>
-      {products.map((product, index) => (
-        <Product
-          key={product.id}
-          ref={index === products.length - 1 ? ref : null}
-          {...product}
-          Button={
-            <Button
-              label={'В корзину'}
-              onClick={() => setItem([...productCart, product])}
+      {products.length
+        ? products.map((product, index) => (
+            <Product
+              key={product.id}
+              ref={index === products.length - 1 ? ref : null}
+              {...product}
+              Button={
+                <Button
+                  label={'В корзину'}
+                  onClick={() => setItem([...productCart, product])}
+                />
+              }
             />
-          }
-        />
-      ))}
+          ))
+        : !isLoading && (
+            <Typography variant={'h1'}>Ничего не найдено</Typography>
+          )}
     </S.ProductList>
   );
 };

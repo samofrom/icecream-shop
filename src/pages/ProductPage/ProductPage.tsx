@@ -17,7 +17,11 @@ const ProductPage: FC = () => {
       Header={
         <>
           <Logo companyName={'IcecreamShop'} />
-          <Input value={inputValue} onChange={setInputValue} />
+          <Input
+            value={inputValue}
+            onChange={setInputValue}
+            placeholder={'Поиск'}
+          />
 
           <ProductCart />
         </>

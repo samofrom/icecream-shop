@@ -10,6 +10,7 @@ export const theme = {
     'bg/white': '#FFFFFF',
     'bg/black': '#000000',
     'bg/grey': '#fcfcfc',
+    'bg/mud': '#ececec',
 
     blue: '#2490E6',
     red: '#f64d4d',
